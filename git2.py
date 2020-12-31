@@ -7,9 +7,8 @@ from selenium import webdriver
 import time
 import requests
 
-
+old_time = None
 path = '/Users/mac/work/python/python_exec/实用主义学python/GitHub/chromedriver'
-driver = webdriver.Chrome(executable_path=path)
 
 #仓库名
 res_name = 'yuhui2017/python'
@@ -18,7 +17,7 @@ api = f'https://api.github.com/repos/{res_name}'
 #仓库地址
 url = f'https://github.com/{res_name}'
 
-old_time = None
+
 while True:
 
     #利用api中的updated_at属性判断是否发生更新
@@ -37,8 +36,8 @@ while True:
     #更新时间发生变化：说明存在更新
     if old_time < update_time:
         print(f'{res_name}存在更新,尝试打开网页')
-        driver.get(api)
+        driver = webdriver.Chrome(executable_path=path)
+        driver.get(url)
         old_time = update_time
-    
-    #每2分钟循环一次
-    time.sleep(120)
+
+    time.sleep(60)
