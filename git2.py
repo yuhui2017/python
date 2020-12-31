@@ -39,5 +39,6 @@ while True:
         print(f'{res_name}存在更新,尝试打开网页')
         driver.get(api)
         old_time = update_time
-
+    
+    #每2分钟循环一次
     time.sleep(120)
